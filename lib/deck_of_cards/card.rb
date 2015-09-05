@@ -37,5 +37,9 @@ module DeckOfCards
     def <=>(other)
       self.value <=> other.value
     end
+
+    def to_s
+      "#{rank.capitalize} of #{suit.capitalize}"
+    end
   end
 end
