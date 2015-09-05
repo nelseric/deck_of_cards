@@ -1,0 +1,18 @@
+AllCops:
+  RunRailsCops: true
+
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+
+  Exclude:
+    - '.'
+
+  Include:
+    - 'lib'
+    - 'spec'
+
+
+Style/StringLiterals:
+  Enabled: false
+
+# inherit_from: .rubocop_todo.yml
