@@ -1,5 +1,4 @@
 require "deck_of_cards/version"
+require 'deck_of_cards/deck'
 
-module DeckOfCards
-  # Your code goes here...
-end
+include DeckOfCards
