@@ -1,6 +1,9 @@
 require 'deck_of_cards/deck'
 
 module DeckOfCards
+  ##
+  # Represents a playing card, with a suit, and a rank
+  # Cards are compared based on their rank, but not their suit
   class Card
     SUITS = [
       :spades,
@@ -40,11 +43,13 @@ module DeckOfCards
       value <=> other.value
     end
 
+    ##
+    # Cards can be concatenated together to create a deck
     def +(other)
       if other.respond_to? :cards
-        Deck.new other.cards.unshift self
+        Deck.new self + other.cards
       else
-        Deck.new [self, other]
+        Deck.new [self, other].flatten
       end
     end
 

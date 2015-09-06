@@ -33,7 +33,7 @@ describe Deck do
     end
   end
   describe "#cut" do
-    it "returns the bottom deck in the first position, and the top deck in the second" do
+    it "returns the bottom deck then top deck in an array" do
       bottom, top = deck.cut
       expect(bottom.cards.first).to eql deck.cards.first
       expect(top.cards.last).to eql deck.cards.last
@@ -52,7 +52,7 @@ describe Deck do
       it "makes the top deck contain one more card than the bottom" do
         deck.draw
         bottom, top = deck.cut
-        
+
         expect(top.size).to eq bottom.size + 1
       end
     end

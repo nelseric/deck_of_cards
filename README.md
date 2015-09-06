@@ -1,8 +1,10 @@
 # DeckOfCards
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/deck_of_cards`. To experiment with that code, run `bin/console` for an interactive prompt.
+DeckOfCards is an implementation of a playing card deck in ruby.
 
-TODO: Delete this and the text above, and describe your gem
+By default it will initialize with a full 52 card french deck.
+
+It is possible to implement other deck types, by initializing deck with an array of cards you want to use.
 
 ## Installation
 
@@ -21,8 +23,42 @@ Or install it yourself as:
     $ gem install deck_of_cards
 
 ## Usage
+```ruby
+# This will include the DeckOfCards module
+require 'deck_of_cards'
 
-TODO: Write usage instructions here
+# If you don't want to do that, you can require individual parts like follows
+require 'deck_of_cards/deck'
+# And use 
+DeckOfCards::Deck
+
+# 52 card standard deck
+deck = Deck.new 
+
+# shuffle returns a new deck instance
+deck = deck.shuffle
+
+# Split the top and bottom halves of the deck
+bottom, top = deck.cut
+
+# Deck concatenation is ordered, so this is how someone would stack a cut deck
+deck = top + bottom 
+
+# Draw five cards from the deck into an array
+hand = deck.draw(5) 
+
+# A new deck can be build by passing an array of cards to deck initialization
+discard_deck = Deck.new hand
+
+# Put the discarded cards back on the deck
+deck = discard_deck + deck
+
+# Look at the top card of the deck
+card = deck.draw # draw one card by default
+deck = deck + card # put the card back
+
+```
+
 
 ## Development
 
