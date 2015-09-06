@@ -1,10 +1,12 @@
+require 'deck_of_cards/deck'
+
 module DeckOfCards
   class Card
     SUITS = [
       :spades,
       :clubs,
       :hearts,
-      :diamonds,
+      :diamonds
     ]
     RANKS = {
       two:   2,
@@ -25,7 +27,7 @@ module DeckOfCards
     include Comparable
 
     attr_reader :suit, :rank
-    def initialize suit, rank
+    def initialize(suit, rank)
       @suit = suit
       @rank = rank
     end
@@ -35,7 +37,15 @@ module DeckOfCards
     end
 
     def <=>(other)
-      self.value <=> other.value
+      value <=> other.value
+    end
+
+    def +(other)
+      if other.respond_to? :cards
+        Deck.new other.cards.unshift self
+      else
+        Deck.new [self, other]
+      end
     end
 
     def to_s

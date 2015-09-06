@@ -19,6 +19,15 @@ describe Card do
     expect(card.to_s).to eq "Ace of Spades"
   end
 
+  describe "when two cards are added together" do
+    let(:other_card) { Card.new :clubs, :two }
+
+    it "creates a deck containing the cards" do
+      expect((card + other_card).cards).to eq [card, other_card]
+      expect((other_card + card).cards).to_not eq  [card, other_card]
+    end
+  end
+
   describe "is comparable using its value"  do
     context "The cards have the same rank" do
       let(:other_card) { Card.new :clubs, :ace }
