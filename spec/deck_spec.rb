@@ -4,7 +4,7 @@ describe Deck do
   subject(:deck) { Deck.new }
   context "A Brand new Deck" do
     it "has 52 cards" do
-      expect(deck.cards.length).to eq 52
+      expect(deck.size).to eq 52
     end
     it "has four suits" do
       expect(deck.cards.map(&:suit).uniq.length).to eq 4
@@ -34,15 +34,27 @@ describe Deck do
   end
   describe "#cut" do
     it "returns the bottom deck in the first position, and the top deck in the second" do
+      bottom, top = deck.cut
+      expect(bottom.cards.first).to eql deck.cards.first
+      expect(top.cards.last).to eql deck.cards.last
 
+      expect((bottom + top).cards).to eql deck.cards
     end
-    
+
     context "The deck has an even number of cards" do
-      it "returns two equal size decks"
+      it "returns two equal size decks" do
+        bottom, top = deck.cut
+        expect(top.size).to eq bottom.size
+      end
     end
 
     context "The deck has an odd number of cards" do
-      it "makes the top deck contain one more card than the bottom"
+      it "makes the top deck contain one more card than the bottom" do
+        deck.draw
+        bottom, top = deck.cut
+        
+        expect(top.size).to eq bottom.size + 1
+      end
     end
   end
 
@@ -51,7 +63,7 @@ describe Deck do
     let(:other_deck) { Deck.new }
 
     it "concatenates the decks together" do
-      expect((deck + other_deck).cards.length).to eq 104
+      expect((deck + other_deck).size).to eq 104
     end
 
     it "returns a new deck with the right deck on top of the left deck" do
