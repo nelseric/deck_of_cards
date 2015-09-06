@@ -68,5 +68,5 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/deck_of_cards.
+Bug reports and pull requests are welcome on GitHub at [https://github.com/nelseric/deck_of_cards](https://github.com/nelseric/deck_of_cards).
 
