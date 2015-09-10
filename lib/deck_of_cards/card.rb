@@ -47,7 +47,7 @@ module DeckOfCards
     # Cards can be concatenated together to create a deck
     def +(other)
       if other.respond_to? :cards
-        Deck.new self + other.cards
+        Deck.new [self] + other.cards
       else
         Deck.new [self, other].flatten
       end
